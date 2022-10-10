@@ -1,9 +1,7 @@
 
 
 def api(coin)
-    #if coin.nil? then coin = $coin end
     coin ||= $coin
-    #binding.pry
     url = URI("https://api.coinbase.com/v2/prices/#{coin}-USD/buy")
     http = Net::HTTP.new(url.host, url.port)
     http.use_ssl = true

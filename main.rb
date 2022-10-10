@@ -1,17 +1,16 @@
+
 require 'uri'
 require 'net/http'
 require 'openssl'
 require "json"
 require 'thread'
-require 'pry'
+require 'byebug'
 
 require_relative "globals"
 require_relative "api"
 require_relative "file"
 require_relative "threads"
-
-
-
+require_relative "calc_interest"
 
 def list_commands()
     puts ""
@@ -27,8 +26,6 @@ def list_commands()
     puts "exit                       : will exit any command or the program"
     puts ""
 end
-
-
 
 def command(arg)
     
@@ -61,6 +58,8 @@ def command(arg)
        print_list
     when "total"
         puts total
+    when "calc"
+        calc(array[1])
     when "help"
         list_commands
     when "exit"

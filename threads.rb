@@ -39,13 +39,18 @@ def threads()
 end
 
 def stop(arg)
+    arg ||= "both"
     if arg == "time" and $time&.alive?
         Thread.kill($time)
     elsif arg == "spread" and $spread&.alive?
         $spread_on = false
         Thread.kill($spread)
+    elsif arg == "both"
+        Thread.kill($time)
+        $spread_on = false
+        Thread.kill($spread)
     else
-    puts "thread not found"
+        puts "no threads found"
     end
 end
 
