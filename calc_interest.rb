@@ -7,7 +7,6 @@ def calc(arg = nil)
         return
     end
 
-
     #user input for coin
     puts "Deposited Coin"
     d_coin = gets.chomp
@@ -22,7 +21,6 @@ def calc(arg = nil)
     i = gets.chomp
     i=i.to_f
     i = i * 0.01
-
 
     puts "time in months"
     t = gets.chomp

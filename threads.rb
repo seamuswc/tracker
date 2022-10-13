@@ -40,13 +40,9 @@ end
 
 def stop(arg)
     arg ||= "both"
-    if arg == "time" and $time&.alive?
+    if (arg == "time" or arg == "both") and $time&.alive?
         Thread.kill($time)
-    elsif arg == "spread" and $spread&.alive?
-        $spread_on = false
-        Thread.kill($spread)
-    elsif arg == "both"
-        Thread.kill($time)
+    elsif (arg == "spread" || arg == "both") and $spread&.alive?
         $spread_on = false
         Thread.kill($spread)
     else
