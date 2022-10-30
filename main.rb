@@ -27,41 +27,52 @@ def list_commands()
     puts ""
 end
 
+def check_command_length(array, *x)
+    if x.include? array.length
+        return true
+    end
+    puts "command not found"
+    return false
+end
+
 def command(arg)
     
     array = arg.split
-    if array.length > 2
-        puts "bad command"
-    end
+    
     
     case array.first
     when "coin" 
-        coin(array)
+        coin(array) if check_command_length(array, 1, 2)        
     when "c"
-        coin(array)
+        coin(array) if check_command_length(array, 1, 2) 
     when "n"
-        puts api(nil)
+        puts api(nil) if check_command_length(array, 1) 
     when "t"
-        time(array[1].to_i)
-        $seconds = array[1].to_i
+        time(array[1]) if check_command_length(array, 1, 2) 
     when "spread"
-        spread_set(array[1].to_i)
+        return if !check_command_length(array, 1,2,3)
+        if array[1] = "total"
+            spread_total(array[2].to_f)
+        else
+            spread_set(array[1].to_f)
+        end
     when "threads"
-        threads
+        threads if check_command_length(array, 1)
     when "stop"
-        stop(array[1])
+        stop(array[1]) if check_command_length(array, 1, 2)
     when "add"
-        append_list
+        append_list if check_command_length(array, 1)
     when "delete"
-       delete_from_list
+       delete_from_list if check_command_length(array, 1)
     when "list"
-       print_list
+       print_list if check_command_length(array, 1)
     when "total"
-        puts total
+        puts total if check_command_length(array, 1)
+        #add a loop option, loops total every x seconds. only the sum
     when "calc"
-        calc(array[1])
+        calc(array[1]) if check_command_length(array, 1,2)
     when "help"
-        list_commands
+        list_commands if check_command_length(array, 1)
     when "exit"
         exit(true)
     else

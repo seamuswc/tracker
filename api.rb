@@ -7,7 +7,12 @@ def api(coin)
     http.use_ssl = true
     request = Net::HTTP::Get.new(url)
     request["accept"] = 'application/json'
-    response = http.request(request)
+    begin
+        response = http.request(request)
+    rescue
+        puts "bad request"
+        return nil
+    end
     parsed = JSON.parse(response.body) # returns a hash
     #add error checking
     begin

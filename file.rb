@@ -55,18 +55,23 @@ def append_list()
     File.write(@fileName, JSON.dump(data_hash))
 end
 
-def total
+def total(sms = nil)
     sms_text = ""
     total_price = 0
     file = File.read('coin.json')
     data_hash = JSON.parse(file)
+    threads = []
     data_hash.each do |k,v| 
-        coin = v[0]
-        amount = v[1]
-        price =  api(v[0]) * amount.to_i
-        total_price += price
-        sms_text << "#{amount} #{coin} is: #{price}. \n"
+        threads << Thread.new {
+            coin = v[0]
+            amount = v[1]
+            price =  api(v[0]) * amount.to_i
+            total_price += price
+            sms_text << "#{amount} #{coin} is: #{price}. \n"
+        }
     end
+    threads.each(&:join)    
     sms_text << "SUM: #{total_price} \n"
-    return sms_text
+    return sms_text if sms.nil?
+    return total_price if !sms.nil?
 end

@@ -1,5 +1,7 @@
 $time = nil
 $spread = nil
+$spread_total = nil
+
 $coin = "eth"
 $price = 0
 $spread_number = 0
