@@ -10,13 +10,13 @@ class Calc
 
         #user input for coin
         puts "Deposited Coin"
-        d_coin = gets.chomp
+        d_coin = gets.chomp.strip
         puts "How Many Of Deposited Coin"
         d_amount = gets.chomp
         d_amount = d_amount.to_i
 
         puts "Earn Coin"
-        e_coin = gets.chomp
+        e_coin = gets.chomp.strip
 
         puts "interest"
         i = gets.chomp

@@ -2,7 +2,7 @@
 class File_Coin
 
     def initialize
-        @file = 'coin/coin.json'
+        @file = File.expand_path("../coin.json", __FILE__)
     end
         
     def print_list()
@@ -49,7 +49,7 @@ class File_Coin
 
     def append_list()
         puts "What would you like to add?\n"
-        coin = gets.chomp
+        coin = gets.chomp.strip
         puts "how many?\n"
         num = gets.chomp
         if coin == "none" || coin == "exit" then return end

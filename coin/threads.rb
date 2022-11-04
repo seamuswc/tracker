@@ -16,7 +16,8 @@ class Coin_Threads
     end
 
     def spread_set(number)
-        $price = api(nil)
+        Api.new
+        $price = Api.new.api(nil)
         $spread_number = number
         $spread_on = true
     end
@@ -72,7 +73,7 @@ class Coin_Threads
         $seconds = seconds
         $time = Thread.new { 
             while true
-                puts api(nil)
+                puts Api.new.api(nil)
                 sleep(seconds)
             end
         }
