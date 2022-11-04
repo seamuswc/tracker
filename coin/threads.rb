@@ -82,11 +82,12 @@ class Coin_Threads
     def spread_total(amount)
         #byebug
         #int check on amount
-        first = total(1)
+        obj = File_Coin.new
+        first = obj.total(1)
         $spread_total = Thread.new {
             while true
                 sleep(10) 
-                t = total(1)
+                t = obj.total(1)
                 next if t.nil? #if api breaks it just skips this loops and trys next time
                 if (t - first).abs >= amount
                     puts "was #{first}, is now #{t}"
