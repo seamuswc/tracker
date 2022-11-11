@@ -53,10 +53,27 @@ class File_Coin
         puts "how many?\n"
         num = gets.chomp
         if coin == "none" || coin == "exit" then return end
+        num = num.to_i
+
         file = File.read(@file)
         data_hash = JSON.parse(file)
-        size = data_hash.size + 1
-        data_hash[size] = [coin, num]
+        
+
+        #loop if check if key already exists
+        skip = false
+        data_hash.each do |k, v|
+            if v[0] == coin
+                v[1] += num
+                skip = true
+            end
+        end
+
+        if !skip
+            size = data_hash.size + 1
+            data_hash[size] = [coin, num]
+        end
+
+
         File.write(@file, JSON.dump(data_hash))
     end
 
@@ -71,7 +88,7 @@ class File_Coin
                 api_o = Api.new
                 coin = v[0]
                 amount = v[1]
-                price =  api_o.api(v[0]) * amount.to_i
+                price =  api_o.api(v[0]) * amount
                 total_price += price
                 sms_text << "#{amount} #{coin} is: #{price}. \n"
             }
