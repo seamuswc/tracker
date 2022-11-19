@@ -2,7 +2,7 @@
 class File_Coin
 
     def initialize
-        @file = File.expand_path("../coin.json", __FILE__)
+        @file = File.expand_path("../coin.json",__FILE__)
     end
         
     def print_list()

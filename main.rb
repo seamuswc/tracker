@@ -15,12 +15,14 @@ require_relative "nft/main"
 require_relative "commands"
 
 
-
-if !File.exists?("coin/coin.json")
-    File.open("coin/coin.json", "w+") {|f| f.write("{}") }
+coin_file = File.expand_path("../coin/coin.json",__FILE__)
+if !File.exists?(coin_file)
+    File.open(coin_file, "w+") {|f| f.write("{}") }
 end
-if !File.exists?("nft/list.json")
-    File.open("nft/list.json", "w+") {|f| f.write("{}") }
+
+nft_file = File.expand_path("../nft/list.json",__FILE__)
+if !File.exists?(nft_file)
+    File.open(nft_file, "w+") {|f| f.write("{}") }
 end
 
 if ARGV[0] == "total"

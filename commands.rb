@@ -33,6 +33,9 @@ def command(arg)
     array = arg.split
 
     case array.first
+    when "sum"
+        coin_file = File_Coin.new
+        puts  coin_file.total("sum") if check_command_length(array, 1)
     when "coin" 
         api = Api.new
         api.coin(array) if check_command_length(array, 1, 2)        
