@@ -1,6 +1,10 @@
 
 class Nft
 
+    def initialize
+        @file = File.expand_path("../list.json",__FILE__)
+    end
+
     $thr = []
 
     def api(nft) 
@@ -26,7 +30,7 @@ class Nft
     end
 
     def read_list()
-        file = File.read('nft/list.json')
+        file = File.read(@file)
         data_hash = JSON.parse(file)
 
         data_hash.each do |k,v| 
@@ -40,7 +44,7 @@ class Nft
         
         int = nft.to_i
         if int == 0 then return end
-        if int > 0 and int <= x.size then
+        if int > 0 and int <= data_hash.size then
             res = api(data_hash[nft])
             puts res
         end
@@ -48,7 +52,7 @@ class Nft
     end
 
     def print_list()
-        file = File.read('nft/list.json')
+        file = File.read(@file)
         data_hash = JSON.parse(file)
         data_hash.each do |k,v| 
             res = api(data_hash[k])
@@ -57,7 +61,7 @@ class Nft
     end
 
     def delete_from_list()
-        file = File.read('nft/list.json')
+        file = File.read(@file)
         data_hash = JSON.parse(file)
         data_hash.each do |k,v| 
             puts "#{k}: #{v}"
@@ -85,7 +89,7 @@ class Nft
 
 
 
-            File.write('nft/list.json', JSON.dump(j))
+            File.write(@file, JSON.dump(j))
         end
 
     end
@@ -94,11 +98,11 @@ class Nft
         puts "Which nft would you like to add?\n"
         nft = gets.chomp
         if nft == "none" || nft == "exit" then return end
-        file = File.read('nft/list.json')
+        file = File.read(@file)
         data_hash = JSON.parse(file)
         size = data_hash.size + 1
         data_hash[size] = nft
-        File.write('nft/list.json', JSON.dump(data_hash))
+        File.write(@file, JSON.dump(data_hash))
     end
 
     def loop_list() 
@@ -127,9 +131,6 @@ class Nft
         end
     end
 
-    def p
-        puts "hello nft"
-    end
 
 
    
