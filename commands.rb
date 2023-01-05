@@ -88,6 +88,12 @@ def command(arg)
         end
     when "run"
         run app/ApplicationController
+    when "stock"
+        stock = Stock.new
+        puts stock.api(array[1], array[2]) if check_command_length(array, 1, 2, 3)  
+    when "s"
+        stock = Stock.new
+        puts stock.api(array[1], array[2]) if check_command_length(array, 1, 2, 3)            
     when "exit"
         exit(true)
     else
