@@ -16,6 +16,7 @@ require_relative "coin/threads"
 require_relative "coin/calc_interest"
 require_relative "nft/main"
 require_relative "stock/api"
+require_relative "math/math"
 require_relative "commands"
 
 

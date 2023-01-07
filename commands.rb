@@ -38,10 +38,10 @@ def command(arg)
         puts  coin_file.total("sum") if check_command_length(array, 1)
     when "coin" 
         api = Api.new
-        api.coin(array) if check_command_length(array, 1, 2)        
+        api.coin(array[1], array[2]) if check_command_length(array, 1, 2, 3)        
     when "c"
         api = Api.new
-        api.coin(array) if check_command_length(array, 1, 2) 
+        api.coin(array[1], array[2]) if check_command_length(array, 1, 2, 3) 
     when "n"
         api = Api.new
         puts api.api(nil) if check_command_length(array, 1) 
@@ -93,7 +93,9 @@ def command(arg)
         puts stock.api(array[1], array[2]) if check_command_length(array, 1, 2, 3)  
     when "s"
         stock = Stock.new
-        puts stock.api(array[1], array[2]) if check_command_length(array, 1, 2, 3)            
+        puts stock.api(array[1], array[2]) if check_command_length(array, 1, 2, 3)       
+    when "math"
+        puts Calc.calc(array)
     when "exit"
         exit(true)
     else

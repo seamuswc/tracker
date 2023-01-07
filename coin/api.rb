@@ -1,7 +1,8 @@
 class Api
 
-    def api(coin)
+    def api(coin, quantity = 0)
         coin ||= $coin
+        quantity ||= 0
         url = URI("https://api.coinbase.com/v2/prices/#{coin}-USD/buy")
         http = Net::HTTP.new(url.host, url.port)
         http.use_ssl = true
@@ -10,30 +11,33 @@ class Api
         begin
             response = http.request(request)
         rescue
-            puts "bad request"
-            return nil
+            return "bad request"
         end
         parsed = JSON.parse(response.body) # returns a hash
         #add error checking
         begin
             price = parsed["data"]["amount"]
         rescue
-            puts "api error"
-            return -1
+            return "api error"
         end
         if $spread_on == true and coin.nil?
             spread_check(price.to_f)
         end
+        
+        if quantity.to_f > 0
+            return ((price.to_f) * (quantity.to_f)).round(3)
+        end
+
         return price.to_f
     end
 
 
-    def coin(array)
-        if array[1].nil?
+    def coin(coin, quantity)
+        if coin.nil?
             puts "Current coin is: #{$coin}"
         else
-            $coin = array[1]
-            puts api(nil)
+            $coin = coin
+            puts api(nil, quantity.to_f)
         end
     end
 

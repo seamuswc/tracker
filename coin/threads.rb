@@ -60,7 +60,7 @@ class Coin_Threads
             puts "Time is #{$seconds}"
             return
         end
-        seconds = seconds.to_i
+        seconds = seconds.to_i.abs
         if seconds == 0
             puts "Time must be an interger and cannot be 0"
             return
