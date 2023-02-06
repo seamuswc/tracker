@@ -16,6 +16,12 @@ def list_commands()
     puts "add                        : appends coin to list"
     puts "delete                     : delete coin from list"
     puts "list                       : reads coin list"
+    puts "sum                        : sum of all coins list"
+    puts "total     (can be argv)    : sum of each coin on list with total sum"
+    puts "nft                        : prices of nfts on list"
+    puts "nft list                   : reads nft list"
+    puts "nft add                    : appends nft to list"
+    puts "nft delete                 : delete nft from list"
     puts "exit                       : will exit any command or the program"
     puts ""
 end
