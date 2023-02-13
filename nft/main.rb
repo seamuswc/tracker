@@ -131,9 +131,17 @@ class Nft
         end
     end
 
+    def punks()
+        begin
+            doc = Nokogiri::HTML(URI.open("https://www.larvalabs.com/cryptopunks"))
+        rescue 
+            return "Punks not found"
+        end
+        text = doc.css('.punk-stat').css('b')[0].text
+        price = text.split[0]
+        return price.to_f
+    end
 
-
-   
 
    
 

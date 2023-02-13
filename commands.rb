@@ -4,7 +4,7 @@ end
 
 def list_commands()
     puts ""
-    puts "coin TICKER, c TICKER      : sets coin ticker and prints it"
+    puts "coin TICKER, c TICKER      : sets coin ticker and prints it (coinbase api)"
     puts "n                          : print coin price"
     puts "t NUMBER                   : loops price every second"
     puts "t                          : shows loop time"
@@ -18,10 +18,10 @@ def list_commands()
     puts "list                       : reads coin list"
     puts "sum                        : sum of all coins list"
     puts "total     (can be argv)    : sum of each coin on list with total sum"
-    puts "nft                        : prices of nfts on list"
     puts "nft list                   : reads nft list"
-    puts "nft add                    : appends nft to list"
+    puts "nft add                    : appends nft to list (opensea api)"
     puts "nft delete                 : delete nft from list"
+    puts "nft punks                  : gets the punks price (nokogiri larvalabs)"
     puts "exit                       : will exit any command or the program"
     puts ""
 end
@@ -87,11 +87,7 @@ def command(arg)
     when "help"
         list_commands if check_command_length(array, 1)    
     when "nft"
-        if check_command_length(array, 1)
-            Nft.new.print_list
-        else
-            nft_commands(array) 
-        end
+        nft_commands(array)
     when "run"
         run app/ApplicationController
     when "stock"
@@ -125,8 +121,8 @@ def nft_commands(array)
         nft.loop_list if check_command_length(array, 2)
     when "stop"
         nft.stop if check_command_length(array, 2)
-    when "p"
-        nft.p if check_command_length(array, 2)
+    when "punks"
+        puts nft.punks if check_command_length(array, 2)
     else
         puts "command not found"
     end
