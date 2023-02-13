@@ -1,6 +1,3 @@
-def test
-    puts "test success"
-end
 
 def list_commands()
     puts ""
