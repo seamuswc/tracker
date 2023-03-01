@@ -19,6 +19,9 @@ def list_commands()
     puts "nft add                    : appends nft to list (opensea api)"
     puts "nft delete                 : delete nft from list"
     puts "nft punks                  : gets the punks price (nokogiri larvalabs)"
+    puts "stock TICKER               : sets stock ticker and prints it"
+    puts "n                          : print stock price"
+    puts "math                       : play with it, you'll figure it out"
     puts "exit                       : will exit any command or the program"
     puts ""
 end
