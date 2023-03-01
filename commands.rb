@@ -20,7 +20,7 @@ def list_commands()
     puts "nft delete                 : delete nft from list"
     puts "nft punks                  : gets the punks price (nokogiri larvalabs)"
     puts "stock TICKER               : sets stock ticker and prints it"
-    puts "n                          : print stock price"
+    puts "s                          : print stock price"
     puts "math                       : play with it, you'll figure it out"
     puts "exit                       : will exit any command or the program"
     puts ""
@@ -90,7 +90,7 @@ def command(arg)
         run app/ApplicationController
     when "stock"
         stock = Stock.new
-        puts stock.api(array[1], array[2]) if check_command_length(array, 1, 2, 3)  
+        puts stock.stock(array[1], array[2]) if check_command_length(array, 1, 2, 3)  
     when "s"
         stock = Stock.new
         puts stock.api(array[1], array[2]) if check_command_length(array, 1, 2, 3)       

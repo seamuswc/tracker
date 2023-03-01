@@ -2,10 +2,20 @@
 
 class Stock
 
-    def api(ticker = "COIN", quantity = 0)
+    def stock(stock, quantity)
+        if stock.nil?
+            puts "Current stock is: #{$stock}"
+        else
+            $stock = stock
+            puts api(nil, quantity.to_f)
+        end
+    end
+
+    def api(ticker, quantity = 0)
+        ticker ||= $stock
         ticker&.upcase!
-        ticker ||= "COIN"
         quantity ||= 0
+        #puts ticker
         begin
             doc = Nokogiri::HTML(URI.open("https://finance.yahoo.com/quote/#{ticker}?p=#{ticker}&.tsrc=fin-srch"))
         rescue 
