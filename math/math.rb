@@ -16,7 +16,11 @@ class Calc
         end
     end
 
+    #no need to do it this way, just ... dunno
     def self.calc(array)
+        if array.length < 4
+            return "arguments too few"
+        end
         new(array).calc
     end
 

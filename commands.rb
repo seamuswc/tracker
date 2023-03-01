@@ -82,8 +82,6 @@ def command(arg)
         coin_file = File_Coin.new
         puts  coin_file.total if check_command_length(array, 1)
         #add a loop option, loops total every x seconds. only the sum
-    when "calc"
-        Calc.new.calc(array[1]) if check_command_length(array, 1,2)
     when "help"
         list_commands if check_command_length(array, 1)    
     when "nft"
