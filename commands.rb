@@ -96,6 +96,8 @@ def command(arg)
         puts stock.api(array[1], array[2]) if check_command_length(array, 1, 2, 3)       
     when "math"
         puts Calc.calc(array)
+    when "ladia"
+        puts la_dia
     when "exit"
         exit(true)
     else
@@ -124,4 +126,21 @@ def nft_commands(array)
     else
         puts "command not found"
     end
+end
+
+def la_dia
+
+    "La dia perfecta es cuando lees cincuenta paginas, mira un epsido en espanol, 
+    hace una revista de las caracters de chino nivel HSK 
+    y practar tu japones con wanikani, bunpro *taekim* y un conversacion.
+    colgar de una barra y haz l-sit, sentarse en chino squat, haz pushups
+    comer pescado o carne fresca o crudo. crudo tamagos de todos tipos son buenos tambien.
+    llevar linen y zapatos de la tela
+    enfocarse en el minimalismo, eso es solo que te ha traido paz, 
+    esto require los prejuicos silencions y los ricos
+    Caminar con un espalda dercho, respiar con el nariz, 
+    avces no comer, no comiendo te ayuada controlar todo.
+    Finalmente, sobriedad. no bebe fuma mira prongrafia o jugar los juedgos
+    Si estas aburrido aprende vioencia (muay thai / bjj), la computador (C), o Thai."
+
 end
