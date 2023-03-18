@@ -72,10 +72,6 @@ class Coin_Threads
 
 
         price_file = File.expand_path("../prices.txt",__FILE__)
-        file = File.open(price_file, "w+")
-        file.close
-        
-
         $seconds = seconds
         $time = Thread.new { 
 

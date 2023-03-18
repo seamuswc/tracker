@@ -27,7 +27,7 @@ class Api
         if quantity.to_f > 0
             return ((price.to_f) * (quantity.to_f)).round(3)
         end
-        
+
         return price.to_f
     end
 
@@ -37,6 +37,9 @@ class Api
             puts "Current coin is: #{$coin}"
         else
             $coin = coin
+            price_file = File.expand_path("../prices.txt",__FILE__)
+            file = File.open(price_file, "w+")
+            file.close
             puts api(nil, quantity.to_f)
         end
     end

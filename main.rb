@@ -30,6 +30,11 @@ if !File.exists?(nft_file)
     File.open(nft_file, "w+") {|f| f.write("{}") }
 end
 
+price_file = File.expand_path("../coin/prices.txt",__FILE__)
+if !File.exists?(price_file)
+    File.open(price_file, "w+")
+end
+
 
 
 if ARGV[0] == "total"
