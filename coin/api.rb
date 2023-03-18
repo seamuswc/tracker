@@ -27,7 +27,7 @@ class Api
         if quantity.to_f > 0
             return ((price.to_f) * (quantity.to_f)).round(3)
         end
-
+        
         return price.to_f
     end
 

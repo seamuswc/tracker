@@ -70,10 +70,27 @@ class Coin_Threads
                 stop("time")
         end
 
+
+        price_file = File.expand_path("../prices.txt",__FILE__)
+        File.open(price_file, "w+")
+        price_file.close
+        
+        
+
         $seconds = seconds
         $time = Thread.new { 
+
             while true
-                puts Api.new.api(nil)
+                price = Api.new.api(nil)
+                
+                File.open(price_file, "a") do |x|
+                    x << price
+                    x << " "
+                end
+                
+               
+                puts price
+
                 sleep(seconds)
             end
         }

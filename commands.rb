@@ -96,6 +96,10 @@ def command(arg)
         puts stock.api(array[1], array[2]) if check_command_length(array, 1, 2, 3)       
     when "math"
         puts Calc.calc(array)
+    when "max"
+        price_file = File.open(File.expand_path("../coin/prices.txt",__FILE__), "r")
+        price_file.rewind
+        puts "MAX: " + price_file.read.split.max
     when "ladia"
         puts la_dia
     when "exit"

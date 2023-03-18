@@ -30,6 +30,8 @@ if !File.exists?(nft_file)
     File.open(nft_file, "w+") {|f| f.write("{}") }
 end
 
+
+
 if ARGV[0] == "total"
     puts File_Coin.new.total
 end
