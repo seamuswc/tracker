@@ -22,6 +22,7 @@ def list_commands()
     puts "stock TICKER               : sets stock ticker and prints it"
     puts "s                          : print stock price"
     puts "math                       : play with it, you'll figure it out"
+    puts "max                        : prints the max price that has occured since time loop started"
     puts "exit                       : will exit any command or the program"
     puts ""
 end
@@ -100,6 +101,7 @@ def command(arg)
         price_file = File.open(File.expand_path("../coin/prices.txt",__FILE__), "r")
         price_file.rewind
         puts "MAX: " + price_file.read.split.max
+        price_file.close
     when "ladia"
         puts la_dia
     when "exit"
@@ -134,17 +136,11 @@ end
 
 def la_dia
 
-    "La dia perfecta es cuando lees cincuenta paginas, mira un epsido en espanol, 
-    hace una revista de las caracters de chino nivel HSK 
-    y practar tu japones con wanikani, bunpro *taekim* y un conversacion.
-    colgar de una barra y haz l-sit, sentarse en chino squat, haz pushups
-    comer pescado o carne fresca o crudo. crudo tamagos de todos tipos son buenos tambien.
-    llevar linen y zapatos de la tela
-    enfocarse en el minimalismo, eso es solo que te ha traido paz, 
-    esto require los prejuicos silencions y los ricos
-    Caminar con un espalda dercho, respiar con el nariz, 
-    avces no comer, no comiendo te ayuada controlar todo.
-    Finalmente, sobriedad. no bebe fuma mira prongrafia o jugar los juedgos
-    Si estas aburrido aprende vioencia (muay thai / bjj), la computador (C), o Thai."
+    "\tMinimalism 沉默偏见 财富
+    \tL-Sit hang 蹲 俯卧撑
+    \tlinen衣服 布鞋 生的肉鱼
+    \t英语 日语 西语 二千五百中文汉字
+    \t电脑 基本的暴力 泰语
+    "
 
 end
