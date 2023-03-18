@@ -31,9 +31,8 @@ if !File.exists?(nft_file)
 end
 
 price_file = File.expand_path("../coin/prices.txt",__FILE__)
-if !File.exists?(price_file)
-    File.open(price_file, "w+")
-end
+a = File.open(price_file, "w+")
+a.close
 
 
 
