@@ -2,13 +2,13 @@ class Coin_Threads
 
     def spread_check(price)
         if ($price - price).abs >= $spread_number
-                
             if $spread&.alive?
                     return
             else
                 $spread = Thread.new { 
                     while true
-                        `say "spread"`
+                        alert
+                        sleep(3)
                     end
                 }
             end        
@@ -16,7 +16,6 @@ class Coin_Threads
     end
 
     def spread_set(number)
-        Api.new
         $price = Api.new.api(nil)
         $spread_number = number
         $spread_on = true
@@ -41,11 +40,11 @@ class Coin_Threads
 
     def stop(arg)
         arg ||= "both"
-        if (arg == "time" or arg == "both") and $time&.alive?
+        if (arg == "spread" || arg == "both") and $spread&.alive?
+        $spread_on = false
+        Thread.kill($spread)
+        elsif (arg == "time" or arg == "both") and $time&.alive?
             Thread.kill($time)
-        elsif (arg == "spread" || arg == "both") and $spread&.alive?
-            $spread_on = false
-            Thread.kill($spread)
         elsif (arg == "total" || arg == "both") and $spread_total&.alive?
             Thread.kill($spread_total)
         else
@@ -82,7 +81,6 @@ class Coin_Threads
                     x << price
                     x << " "
                 end
-                
                
                 puts price
 
@@ -104,7 +102,8 @@ class Coin_Threads
                 if (t - first).abs >= amount
                     puts "was #{first}, is now #{t}"
                     while true    
-                        `say "spread total"`
+                        alert
+                        sleep(3)
                     end
                 end
             end
@@ -113,4 +112,15 @@ class Coin_Threads
 
     end
 
+end
+
+def alert
+    if RUBY_PLATFORM.include? 'linux'
+        system("spd-say 'spread'")
+        puts "Spread Hit! --- linux"
+    elsif
+        RUBY_PLATFORM.include? 'mac'
+        system("say 'spread'")
+        puts "Spread Hit! --- mac"
+    end
 end

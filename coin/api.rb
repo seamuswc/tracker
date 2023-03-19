@@ -1,6 +1,7 @@
 class Api
 
     def api(coin, quantity = 0)
+        
         coin ||= $coin
         quantity ||= 0
         url = URI("https://api.coinbase.com/v2/prices/#{coin}-USD/buy")
@@ -20,8 +21,10 @@ class Api
         rescue
             return "api error"
         end
-        if $spread_on == true and coin.nil?
-            spread_check(price.to_f)
+
+        
+        if $spread_on == true
+            Coin_Threads.new.spread_check(price.to_f)
         end
         
         if quantity.to_f > 0
@@ -36,6 +39,7 @@ class Api
         if coin.nil?
             puts "Current coin is: #{$coin}"
         else
+            $spread_on = false
             $coin = coin
             price_file = File.expand_path("../prices.txt",__FILE__)
             file = File.open(price_file, "w+")
