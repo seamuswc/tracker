@@ -21,9 +21,9 @@ def list_commands()
     puts "nft punks                  : gets the punks price (nokogiri larvalabs)"
     puts "stock TICKER               : sets stock ticker and prints it"
     puts "s                          : print stock price"
-    puts "math                       : play with it, you'll figure it out"
+    puts "math                       : play with it, you'll figure it out. PEMDAS without parenthesis"
     puts "max                        : prints the max price that has occured since time loop started"
-    puts "min or low                 : prints the min price that has occured since time loop started"
+    puts "min                        : prints the min price that has occured since time loop started"
     puts "address                    : Asks for an eth address and prints the sum. (Etherscan & nokogiri) "
     puts "exit                       : will exit any command or the program"
     puts ""
@@ -100,32 +100,16 @@ def command(arg)
     when "math"
         puts Calc.calc(array)
     when "max"
-        price_file = File.open(File.expand_path("../coin/prices.txt",__FILE__), "r")
-        price_file.rewind
-        puts "MAX: " + price_file.read.split.max
-        price_file.close
-    when "low"
-        price_file = File.open(File.expand_path("../coin/prices.txt",__FILE__), "r")
-        price_file.rewind
-        puts "LOW: " + price_file.read.split.min
-        price_file.close
+        puts "MAX: " + File_Coin.new.max
     when "min"
-        price_file = File.open(File.expand_path("../coin/prices.txt",__FILE__), "r")
-        price_file.rewind
-        puts "MIN: " + price_file.read.split.min
-        price_file.close
+        puts "MIN: " + File_Coin.new.max
     when "range"
-        price_file = File.open(File.expand_path("../coin/prices.txt",__FILE__), "r")
-        price_file.rewind
-        max = price_file.read.split.max
-        price_file.rewind
-        low = price_file.read.split.min
-        range = max.to_f - low.to_f
+        max = File_Coin.new.max
+        min = File_Coin.new.min
+        range = max.to_f - min.to_f
         puts "MAX: " + max
-        puts "MIN: " + low
+        puts "MIN: " + min
         puts "range: #{range}"
-
-        price_file.close
     when "address"
         sum = Api.new.address
         puts sum

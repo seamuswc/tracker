@@ -99,4 +99,36 @@ class File_Coin
         return total_price if !sms.nil?
     end
 
+
+    def max
+        price_file = File.open(File.expand_path("../prices.txt",__FILE__), "r")
+        price_file.rewind
+        begin
+            num = price_file.read.split.max
+        rescue
+            price_file.close
+            return "wait until more loops occur"
+        end
+
+        price_file.close
+        return "wait until more loops occur" if num.nil?
+        return num
+    end
+
+    def min
+        price_file = File.open(File.expand_path("../prices.txt",__FILE__), "r")
+        price_file.rewind
+        begin
+            num = price_file.read.split.min
+        rescue
+            price_file.close
+            return "wait until more loops occur"
+        end
+        price_file.close
+        return "wait until more loops occur" if num.nil?
+        return num
+    end
+
+    
+
 end

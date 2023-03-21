@@ -75,16 +75,17 @@ class Coin_Threads
         $time = Thread.new { 
 
             while true
-                price = Api.new.api(nil)
-                
-                File.open(price_file, "a") do |x|
-                    x << price
-                    x << " "
+                begin
+                    price = Api.new.api(nil)
+                    File.open(price_file, "a") do |x|
+                        x << price
+                        x << " "
+                    end
+                    puts price
+                    sleep(seconds)
+                rescue
+                    next
                 end
-               
-                puts price
-
-                sleep(seconds)
             end
         }
     end
