@@ -48,4 +48,16 @@ class Api
         end
     end
 
+    def address()
+        puts "Enter Ethereum Address\n"
+        address = gets.chomp
+        begin
+            doc = Nokogiri::HTML(URI.open("https://etherscan.io/address/#{address}"))
+        rescue 
+            return "Page or Address not found, try again, im retarded"
+        end
+        text = doc.at_css('button#dropdownMenuBalance').text
+        return text.split("\n")[1]
+    end
+
 end

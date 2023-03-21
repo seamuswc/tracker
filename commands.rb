@@ -23,6 +23,8 @@ def list_commands()
     puts "s                          : print stock price"
     puts "math                       : play with it, you'll figure it out"
     puts "max                        : prints the max price that has occured since time loop started"
+    puts "min or low                 : prints the min price that has occured since time loop started"
+    puts "address                    : Asks for an eth address and prints the sum. (Etherscan & nokogiri) "
     puts "exit                       : will exit any command or the program"
     puts ""
 end
@@ -102,6 +104,31 @@ def command(arg)
         price_file.rewind
         puts "MAX: " + price_file.read.split.max
         price_file.close
+    when "low"
+        price_file = File.open(File.expand_path("../coin/prices.txt",__FILE__), "r")
+        price_file.rewind
+        puts "LOW: " + price_file.read.split.min
+        price_file.close
+    when "min"
+        price_file = File.open(File.expand_path("../coin/prices.txt",__FILE__), "r")
+        price_file.rewind
+        puts "MIN: " + price_file.read.split.min
+        price_file.close
+    when "range"
+        price_file = File.open(File.expand_path("../coin/prices.txt",__FILE__), "r")
+        price_file.rewind
+        max = price_file.read.split.max
+        price_file.rewind
+        low = price_file.read.split.min
+        range = max.to_f - low.to_f
+        puts "MAX: " + max
+        puts "MIN: " + low
+        puts "range: #{range}"
+
+        price_file.close
+    when "address"
+        sum = Api.new.address
+        puts sum
     when "ladia"
         puts la_dia
     when "exit"
@@ -138,7 +165,7 @@ def la_dia
 
     "\tMinimalism 沉默偏见 财富
     \tL-Sit hang 蹲 俯卧撑
-    \tlinen衣服 布鞋 生的肉鱼
+    \t亚麻衣服 布鞋 生的肉鱼
     \t英语 日语 西语 二千五百中文汉字
     \t电脑 基本的暴力 泰语
     "
