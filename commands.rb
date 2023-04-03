@@ -126,6 +126,8 @@ end
 def nft_commands(array) 
     nft = Nft.new
     case array[1]
+    when nil
+        nft.print_list
     when "add"
         nft.append_list() if check_command_length(array, 2)
     when "delete"
@@ -147,11 +149,12 @@ end
 
 def la_dia
 
-    "\tMinimalism 沉默偏见 财富
-    \tL-Sit hang 蹲 俯卧撑
-    \t亚麻衣服 布鞋 生的肉鱼
-    \t英语 日语 西语 二千五百中文汉字
-    \t电脑 基本的暴力 泰语
     "
-
+    \tMinimalism 沉默偏见 财富
+    \tSobriety 不手淫 不游戏 不看媒体 
+    \t蹲 十引体上向 基本的暴力
+    \t有时禁吃 生的肉鱼 锋利的刀子
+    \t填满一页用: 西语 中文 俄语 日语 英语  
+    "
+     
 end
