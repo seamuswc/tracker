@@ -4,6 +4,7 @@ class Fork
 
     def spoon
         pid = fork do
+            puts Process.pid
             q = Fork.new
             q.start
         end       
