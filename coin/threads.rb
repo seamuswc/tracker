@@ -7,7 +7,8 @@ class Coin_Threads
             else
                 $spread = Thread.new { 
                     while true
-                        alert
+                        system("say 'spread'")
+                        puts "Spread Hit! --- mac"
                         sleep(3)
                     end
                 }

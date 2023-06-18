@@ -18,6 +18,7 @@ class Nft
         http = Net::HTTP.new(url.host, url.port)
         http.use_ssl = true
         request = Net::HTTP::Get.new(url)
+        request['X-API-KEY'] = "6429a7917fbb4fc1a0ec7895e5fff5ca"
         res = http.request(request)
 
         if res.code == "200"

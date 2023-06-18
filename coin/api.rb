@@ -24,6 +24,7 @@ class Api
 
         
         if $spread_on == true
+            #byebug
             Coin_Threads.new.spread_check(price.to_f)
         end
         

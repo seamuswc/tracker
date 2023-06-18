@@ -7,6 +7,8 @@ require 'thread'
 require 'byebug'
 require 'nokogiri'
 require 'open-uri'
+require 'net/smtp'
+
 
 
 require_relative "globals"
@@ -18,6 +20,8 @@ require_relative "nft/main"
 require_relative "stock/api"
 require_relative "math/math"
 require_relative "commands"
+require_relative "app/fork"
+
 
 
 coin_file = File.expand_path("../coin/coin.json",__FILE__)

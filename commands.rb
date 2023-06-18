@@ -115,6 +115,8 @@ def command(arg)
         puts sum
     when "ladia"
         puts la_dia
+    when "start"
+        Fork.new.spoon
     when "exit"
         exit(true)
     else
@@ -154,7 +156,7 @@ def la_dia
     \tSobriety 不手淫 不游戏 不看媒体 
     \t蹲 十引体上向 基本的暴力
     \t有时禁吃 生的肉鱼 锋利的刀子
-    \t填满一页用: 西语 中文 俄语 日语 英语  
+    \t填满一页用: 西语 中文 日语 英语  
     "
      
 end
