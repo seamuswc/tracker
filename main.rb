@@ -8,7 +8,7 @@ require 'byebug'
 require 'nokogiri'
 require 'open-uri'
 require 'net/smtp'
-
+require 'dotenv/load'
 
 
 require_relative "globals"

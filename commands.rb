@@ -117,6 +117,8 @@ def command(arg)
         puts la_dia
     when "start"
         Fork.new.spoon
+    when "email"
+        Fork.new.email("test")
     when "exit"
         exit(true)
     else

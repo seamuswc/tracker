@@ -12,6 +12,9 @@ class Fork
     end
 
     def start
+
+        id = Process.pid
+        email("program has started under PID #{id}")
     
         api = Api.new
         base = api.api(nil)
@@ -30,10 +33,11 @@ class Fork
     end
 
     def email(message)
+
         message = message.to_s #need to be a string to send in email
-        from = "jamesthaiphone@gmail.com"
-        to = "seamuswconnolly@gmail.com"
-        pass = "nzelczjssktvmpri" #gmail needs a custom pass created for apps
+        from = ENV['FROM']
+        to = ENV['TO']
+        pass = ENV['KEY'] #gmail needs a custom pass created for apps
 
         smtp = Net::SMTP.new('smtp.gmail.com', 587)
         smtp.start('received-from-goes-here', from, pass, :plain)
