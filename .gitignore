@@ -4,3 +4,4 @@ coin.json
 Gemfile.lock
 coin/coin.json
 nft/list.json
+.env
