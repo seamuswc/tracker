@@ -1,10 +1,9 @@
 
-
 class Fork 
 
     def spoon
         pid = fork do
-            Process.setsid
+            Process.setsid #removes the child as its own process essential making a dameon
             puts Process.pid
             q = Fork.new
             q.start
@@ -12,21 +11,29 @@ class Fork
         Process.detach(pid)
     end
 
-    def start
-
-        id = Process.pid
-        email("program has started under PID #{id}")
-    
+    def calc_fall_reach
         api = Api.new
         base = api.api(nil)
         reach = (base * 0.05) + base
+        fall = base - (base * 0.05)
+        return([reach, fall])
+    end
 
+    def start
+
+        id = Process.pid 
+        email("program has started under PID #{id}")
+    
+        reach, fall = calc_fall_reach
+       
         while true
             p = api.api(nil)
             if p >= reach
                 email(p)
-                base = p
-                reach = (base * 0.05) + base
+                reach, fall = calc_fall_reach
+            elsif p <= fall
+                email(p)
+                reach, fall = calc_fall_reach
             end
         sleep(3600)
         end

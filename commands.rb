@@ -22,6 +22,7 @@ def list_commands()
     puts "stock TICKER               : sets stock ticker and prints it"
     puts "s                          : print stock price"
     puts "math                       : play with it, you'll figure it out. PEMDAS without parenthesis"
+    puts "range                      : prints the range since time loop started"
     puts "max                        : prints the max price that has occured since time loop started"
     puts "min                        : prints the min price that has occured since time loop started"
     puts "address                    : Asks for an eth address and prints the sum. (Etherscan & nokogiri) "
@@ -59,7 +60,11 @@ def command(arg)
         coin_threads.time(array[1]) if check_command_length(array, 1, 2) 
     when "spread"
        # byebug
-        return if !check_command_length(array,2,3)
+        return if !check_command_length(array,1,2,3)
+        if array.length == 1
+            puts $spread_number 
+            return
+        end
         coin_threads = Coin_Threads.new
         if array[1] == "total"
             coin_threads.spread_total(array[2].to_f)
@@ -102,10 +107,11 @@ def command(arg)
     when "max"
         puts "MAX: " + File_Coin.new.max
     when "min"
-        puts "MIN: " + File_Coin.new.max
+        puts "MIN: " + File_Coin.new.min
     when "range"
-        max = File_Coin.new.max
-        min = File_Coin.new.min
+        z = File_Coin.new
+        max = z.max
+        min = z.min
         range = max.to_f - min.to_f
         puts "MAX: " + max
         puts "MIN: " + min
@@ -154,11 +160,10 @@ end
 def la_dia
 
     "
-    \tMinimalism 沉默偏见 财富
+    \tMinimalism 财富 种族主义
     \tSobriety 不手淫 不游戏 不看媒体 
-    \t蹲 十引体上向 基本的暴力
-    \t有时禁吃 生的肉鱼 锋利的刀子
-    \t填满一页用: 西语 中文 日语 英语  
+    \t中国蹲 十引体上向 基本的暴力
+    \t西语 中文 日语 英语  
     "
      
 end

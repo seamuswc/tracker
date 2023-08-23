@@ -78,9 +78,11 @@ class Coin_Threads
             while true
                 begin
                     price = Api.new.api(nil)
-                    File.open(price_file, "a") do |x|
-                        x << price
-                        x << " "
+                    if price.is_a? Numeric
+                        File.open(price_file, "a") do |x|
+                            x << price
+                            x << " "
+                        end
                     end
                     puts price
                     sleep(seconds)

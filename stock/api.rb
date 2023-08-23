@@ -1,5 +1,4 @@
 
-
 class Stock
 
     def stock(stock, quantity)

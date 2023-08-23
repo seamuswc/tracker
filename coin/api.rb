@@ -14,12 +14,14 @@ class Api
         rescue
             return "bad request"
         end
-        parsed = JSON.parse(response.body) # returns a hash
+        begin
+            parsed = JSON.parse(response.body) #returns a hash
+        rescue
+        end
         #add error checking
         begin
             price = parsed["data"]["amount"]
         rescue
-            return "api error"
         end
 
         
