@@ -59,8 +59,12 @@ class Api
         rescue 
             return "Page or Address not found, try again, im retarded"
         end
+
+        element = doc.css("h4.text-cap.mb-1")[1]
+        div = element.parent
+        eth = div.text.split(" ")[2]
         text = doc.at_css('button#dropdownMenuBalance').text
-        return text.split("\n")[1]
+        return "ETH: #{eth} , TOKENS: #{text.split("\n")[1]}"
     end
 
 end
