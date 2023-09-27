@@ -30,4 +30,14 @@ class Stock
         return price.to_f
     end
 
+    def gold()
+        begin
+            doc = Nokogiri::HTML(URI.open("https://www.kitco.com/market/"))
+        rescue 
+            return "GOLD not found"
+        end
+        value = doc.at_css('#AU-bid').text
+        return value.to_f
+    end
+
 end

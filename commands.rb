@@ -101,7 +101,10 @@ def command(arg)
         puts stock.stock(array[1], array[2]) if check_command_length(array, 1, 2, 3)  
     when "s"
         stock = Stock.new
-        puts stock.api(array[1], array[2]) if check_command_length(array, 1, 2, 3)       
+        puts stock.api(array[1], array[2]) if check_command_length(array, 1, 2, 3)
+    when "g"
+        gold = Stock.new
+        puts gold.gold       
     when "math"
         puts Calc.calc(array)
     when "max"
