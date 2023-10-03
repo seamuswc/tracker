@@ -25,12 +25,12 @@ require_relative "app/fork"
 
 
 coin_file = File.expand_path("../coin/coin.json",__FILE__)
-if !File.exists?(coin_file)
+if !File.exist?(coin_file)
     File.open(coin_file, "w+") {|f| f.write("{}") }
 end
 
 nft_file = File.expand_path("../nft/list.json",__FILE__)
-if !File.exists?(nft_file)
+if !File.exist?(nft_file)
     File.open(nft_file, "w+") {|f| f.write("{}") }
 end
 
