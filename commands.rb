@@ -121,7 +121,7 @@ def command(arg)
         puts "MIN: " + min
         puts "range: #{range}"
     when "address"
-        sum = Api.new.address
+        sum = Api.new.address(array[1])
         puts sum
     when "ladia"
         puts la_dia
