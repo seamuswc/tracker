@@ -63,11 +63,11 @@ class Api
             return "Page or Address not found, try again, im retarded"
         end
 
-        noko = lambda {  
-            element = doc.css("h4.text-cap.mb-1")[1]
-            div = element.parent
-            eth = div.text.split(" ")[2]
+        noko = lambda {   
             begin
+                element = doc.css("h4.text-cap.mb-1")[1]
+                div = element.parent
+                eth = div.text.split(" ")[2]
                 text = doc.at_css('button#dropdownMenuBalance').text
             rescue
                 return "perhaps no resolver set"
