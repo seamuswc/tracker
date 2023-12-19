@@ -9,7 +9,7 @@ class Nft
 
     def api(nft) 
         begin
-            url = URI("https://api.opensea.io/collection/#{nft}")
+            url = URI("https://api.opensea.io/api/v2/offers/collection/#{nft}")
             #URI? check to prevent program crash
         rescue
             puts "NFT URL not found"
@@ -18,14 +18,15 @@ class Nft
         http = Net::HTTP.new(url.host, url.port)
         http.use_ssl = true
         request = Net::HTTP::Get.new(url)
-        request['X-API-KEY'] = "6429a7917fbb4fc1a0ec7895e5fff5ca"
+        request['X-API-KEY'] = "b157a7a373e049b8b64b6c7a17b5bb72"
         res = http.request(request)
 
         if res.code == "200"
             parsed = JSON.parse(res.body)
-            return parsed["collection"]["stats"]["floor_price"]
+            value = parsed["offers"][0]["price"]["value"].to_f
+            return value / 10**18
         else
-            puts "couldnt find nft"
+            puts "couldnt find nft 200 jyanai"
         end
 
     end
