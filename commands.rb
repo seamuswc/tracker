@@ -21,6 +21,7 @@ def list_commands()
     puts "nft punks                  : gets the punks price (nokogiri larvalabs)"
     puts "stock TICKER               : sets stock ticker and prints it"
     puts "s                          : print stock price"
+    puts "g                          : print gold price"
     puts "math                       : play with it, you'll figure it out. PEMDAS without parenthesis"
     puts "range                      : prints the range since time loop started"
     puts "max                        : prints the max price that has occured since time loop started"
