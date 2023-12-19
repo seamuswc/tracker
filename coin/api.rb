@@ -51,20 +51,44 @@ class Api
         end
     end
 
-    def address()
-        puts "Enter Ethereum Address\n"
-        address = gets.chomp
+    def address(address = nil)
+        if address == nil
+            puts "Enter Ethereum Address\n"
+            address = gets.chomp
+        end
+
         begin
             doc = Nokogiri::HTML(URI.open("https://etherscan.io/address/#{address}"))
         rescue 
             return "Page or Address not found, try again, im retarded"
         end
 
-        element = doc.css("h4.text-cap.mb-1")[1]
-        div = element.parent
-        eth = div.text.split(" ")[2]
-        text = doc.at_css('button#dropdownMenuBalance').text
-        return "ETH: #{eth} , TOKENS: #{text.split("\n")[1]}"
-    end
+        noko = lambda {  
+            element = doc.css("h4.text-cap.mb-1")[1]
+            div = element.parent
+            eth = div.text.split(" ")[2]
+            begin
+                text = doc.at_css('button#dropdownMenuBalance').text
+            rescue
+                return "perhaps no resolver set"
+            end
+            return "ETH: #{eth} , TOKENS: #{text.split("\n")[1]}" 
+        }
+
+        #if string is 42 chars and first 2 are 0x then and no speacial characters
+        #if ends in .eth and all digits
+        #if ends in .eth
+        if ( address.length == 42 and address[0] == '0' and address[1] == 'x' and address.match?(/\A[a-zA-Z0-9]*\z/) )
+            noko.call
+        elsif (address[-4..-1] == '.eth' and address[0...-4].match?(/\A\d+\z/))
+            noko.call
+        elsif (address[-4..-1] == '.eth')
+            puts "theres some ehterscan anti scanning chicanery, numbers.eth or full address only"
+            
+        else
+            puts "address format error maybe"
+        end
+
+    end #address end
 
 end
